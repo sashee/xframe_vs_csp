@@ -1,0 +1,63 @@
+<html>
+	<head>
+		<style>
+			div {
+				border: 1px solid black;
+				margin: 10px;
+			}
+			iframe {
+				width: 70px;
+				height: 70px;
+			}
+		</style>
+	</head>
+	<body>
+		<table>
+			<thead>
+				<tr><th/><th colspan="4">localhost:$PORT</th></tr>
+				<tr>
+					<th/>
+					<th colspan="2">localhost:3000</th>
+					<th colspan="2">localhost:3001</th>
+				</tr>
+				<tr>
+					<th>Options</th>
+					<th>localhost:3000</th>
+					<th>localhost:3001</th>
+					<th>localhost:3000</th>
+					<th>localhost:3001</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>X-Frame-Options: sameorigin</td>
+					<td><iframe src="//localhost:3000/include?xframe=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3000/include?xframe=&port=3001"></iframe></td>
+					<td><iframe src="//localhost:3001/include?xframe=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3001/include?xframe=&port=3001"></iframe></td>
+				</tr>
+				<tr>
+					<td>Content-Security-Policy: frame-ancestors localhost:3000 localhost:3001;</td>
+					<td><iframe src="//localhost:3000/include?csp_all=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3000/include?csp_all=&port=3001"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_all=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_all=&port=3001"></iframe></td>
+				</tr>
+				<tr>
+					<td>Content-Security-Policy: frame-ancestors localhost:3000;</td>
+					<td><iframe src="//localhost:3000/include?csp_3000=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3000/include?csp_3000=&port=3001"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_3000=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_3000=&port=3001"></iframe></td>
+				</tr>
+				<tr>
+					<td>Content-Security-Policy: frame-ancestors localhost:3001;</td>
+					<td><iframe src="//localhost:3000/include?csp_3001=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3000/include?csp_3001=&port=3001"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_3001=&port=3000"></iframe></td>
+					<td><iframe src="//localhost:3001/include?csp_3001=&port=3001"></iframe></td>
+				</tr>
+			</tbody>
+		</table>
+	</body>
+</html>
